@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 class Urls:
     # Основная страница
     url_main_paige = "https://stellarburgers.nomoreparties.site/"

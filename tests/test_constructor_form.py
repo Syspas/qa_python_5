@@ -1,11 +1,12 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from web_locators.locators import *
-
 
 class TestStellarBurgersConstructorForm:
 
-    def test_constructor_go_to_sauces_scroll_to_sauces(self, login):
+    def test_constructor_go_to_sauces_scroll_to_sauces(self,driver):
         """Проверка перехода на "Соусы" """
-        driver = login
+
 
         driver.find_element(*MainPage.mn_constructor_button).click()
         driver.find_element(*MainPage.mn_sauces_button).click()
@@ -14,9 +15,9 @@ class TestStellarBurgersConstructorForm:
 
         assert h_sauce.text == 'Соусы'
 
-    def test_constructor_go_to_filling_scroll_to_filling(self, login):
+    def test_constructor_go_to_filling_scroll_to_filling(self,driver):
         """Проверка перехода на "Начинки" """
-        driver = login
+
 
         driver.find_element(*MainPage.mn_constructor_button).click()
         driver.find_element(*MainPage.mn_filling_button).click()
@@ -24,9 +25,9 @@ class TestStellarBurgersConstructorForm:
 
         assert h_filling.text == 'Начинки'
 
-    def test_constructor_go_to_bun_scroll_to_bun(self, login):
+    def test_constructor_go_to_bun_scroll_to_bun(self,driver):
         """Проверка перехода на "Булки" """
-        driver = login
+
 
         driver.find_element(*MainPage.mn_constructor_button).click()
         driver.find_element(*MainPage.mn_filling_button).click()

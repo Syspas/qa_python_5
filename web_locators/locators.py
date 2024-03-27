@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from selenium.webdriver.common.by import By
 
 
@@ -16,7 +18,7 @@ class MainPage:
 
     mn_filling_button = (By.XPATH, ".//span[text()='Начинки']/parent::*")
     mn_h_filling = By.XPATH, ".//h2[@class='text text_type_main-medium mb-6 mt-10' and text()='Начинки']"
-
+    h1_tag = By.XPATH, ".//h1"
 
 class AuthLogin:
     al_login_text = (By.XPATH, ".//h2[text()='Вход']")

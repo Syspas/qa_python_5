@@ -44,3 +44,31 @@ pip3 install -r requirements.txt
 ```shell
 pytest -v
 ```
+### Настройка переменных сред 
+Чтобы прописать пути к исполняемым файлам geckodriver и Firefox в переменные окружения GECKODRIVER_PATH и FIREFOX_BINARY_PATH соответственно, вы можете использовать команды для установки переменных окружения в вашей операционной системе. Ниже приведены примеры команд для различных операционных систем:
+
+### Для Windows:
+
+1. Откройте командную строку (cmd).
+2. Для установки переменной окружения GECKODRIVER_PATH используйте команду:
+```shell
+   setx GECKODRIVER_PATH "путь_к_geckodriver.exe"
+```
+3. Для установки переменной окружения FIREFOX_BINARY_PATH используйте команду:
+```shell
+   setx FIREFOX_BINARY_PATH "путь_к_firefox.exe"
+```
+
+### Для MacOS и Linux:
+
+1. Откройте терминал.
+2. Для установки переменной окружения GECKODRIVER_PATH используйте команду:
+```shell
+   export GECKODRIVER_PATH="путь_к_geckodriver"
+```
+3. Для установки переменной окружения FIREFOX_BINARY_PATH используйте команду:
+```shell
+   export FIREFOX_BINARY_PATH="путь_к_firefox"
+```
+
+После выполнения этих команд, пути к исполняемым файлам geckodriver и Firefox будут доступны в переменных окружения GECKODRIVER_PATH и FIREFOX_BINARY_PATH соответственно. Вам нужно будет перезапустить вашу IDE или терминал, чтобы изменения вступили в силу.

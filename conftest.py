@@ -1,49 +1,46 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import pytest
+
 import os
+
+import pytest
 from selenium import webdriver
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-
-from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
 
-from web_locators.locators import *
-from data.urls import Urls
 from data.data import PersonData
+from data.urls import Urls
+from web_locators.locators import *
 
+# Получение значения переменной окружения GECKODRIVER_PATH и сохранение в переменной geckodriver_path
+geckodriver_path = os.getenv("GECKODRIVER_PATH")
 
+# Получение значения переменной окружения FIREFOX_BINARY_PATH и сохранение в переменной firefox_binary_path
+firefox_binary_path = os.getenv("FIREFOX_BINARY_PATH")
 
+# Декоратор для создания фикстуры в pytest
 @pytest.fixture
+# Определение функции-фикстуры firefox_driver
 def driver():
-    # Указание пути к исполняемому файлу Firefox
-    binary = FirefoxBinary("C:\\Program Files\\Mozilla Firefox\\firefox.exe")
-    # Настройка параметров браузера Firefox
-    options = Options()
-    options.binary = binary
-    options.add_argument("--window-size=1920,1080")
+# Создание объекта FirefoxBinary с указанием пути к исполняемому файлу Firefox
+    binary = FirefoxBinary(firefox_binary_path)
 
-    # Имя файла geckodriver.exe
-    # Версия geckodriver-v0.34.0-win32 Версия браузера Mozilla Firefox 124.0.1 (64-разрядный)
-    geckodriver_filename = 'geckodriver.exe'
+# Создание объекта опций для браузера Firefox
+    options = webdriver.FirefoxOptions()
+
+# Установка режима headless (без графического интерфейса)
+    options.headless = True
 
 
-    # Путь к geckodriver.exe
-    geckodriver_path = os.path.join(os.getcwd(), geckodriver_filename)
+# Создание объекта драйвера для браузера Firefox с указанием пути к geckodriver, объекта FirefoxBinary и опциями
+    driver = webdriver.Firefox(executable_path=geckodriver_path, firefox_binary=binary, options=options)
 
-    # Инициализация WebDriver для браузера Firefox с указанием пути к geckodriver.exe и передачей параметров
-    driver = webdriver.Firefox(executable_path=geckodriver_path, options=options)
-
-    # Переход на URL главной страницы сайта
-    driver.get(Urls.url_main_paige)
-
+# Возврат объекта драйвера для использования в тесте
     yield driver
 
-    # Закрытие WebDriver после завершения теста
+# Закрытие браузера после завершения теста
     driver.quit()
-
-
 
 
 @pytest.fixture
@@ -62,4 +59,4 @@ def login(driver):
     # Ожидание появления кнопки заказа на главной странице
     WebDriverWait(driver, 3).until(EC.presence_of_element_located(MainPage.mn_order_button))
 
-    return driver
+
